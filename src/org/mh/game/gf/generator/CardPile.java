@@ -35,9 +35,10 @@ public class CardPile
 	
 	private static List<Card> generateRandomCardPile()
 	{
-		for (int i=0; i<4; i++)
+		
+		for (int j=2; j<=14; j++)
 		{
-			for (int j=0; j<13; j++)
+			for (int i=1; i<=4; i++)
 			{
 				Card c = new Card();
 				c.setColor(COLOR.getByValue(i));
@@ -54,31 +55,33 @@ public class CardPile
 	public HandCard getRandomHandCard()
 	{
 		HandCard handCard = new HandCard();
-		int index = new Random().nextInt(cards.size());
+		Random random = new Random(System.currentTimeMillis());
+		
+		int index = random.nextInt(cards.size());
 		Card c1 = cards.get(index);
-		while (sendFlag.get(c1).booleanValue() == true)
+		while (sendFlag.get(c1).booleanValue() != false)
 		{
-			index = new Random().nextInt(cards.size());
+			index = random.nextInt(cards.size());
 			c1 = cards.get(index);
 		}
 		sendFlag.put(c1, true);
 		handCard.addCard(c1);
 		
-		index = new Random().nextInt(cards.size()); 
+		index = random.nextInt(cards.size()); 
 		Card c2 = cards.get(index);
-		while (sendFlag.get(c2).booleanValue() == true)
+		while (sendFlag.get(c2).booleanValue() != false)
 		{
-			index = new Random().nextInt(cards.size());
+			index = random.nextInt(cards.size());
 			c2 = cards.get(index);
 		}
 		sendFlag.put(c2, true);
 		handCard.addCard(c2);
 		
-		index = new Random().nextInt(cards.size()); 
+		index = random.nextInt(cards.size()); 
 		Card c3 = cards.get(index);
-		while (sendFlag.get(c3).booleanValue() == true)
+		while (sendFlag.get(c3).booleanValue() != false)
 		{
-			index = new Random().nextInt(cards.size());
+			index = random.nextInt(cards.size());
 			c3 = cards.get(index);
 		}
 		sendFlag.put(c3, true);
